@@ -1,0 +1,72 @@
+html {
+  --font-stack: 'Inter', sans-serif;
+
+  --font-size-small: 11px;
+  --font-size-medium: 13px;
+  --font-size-large: 14px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  --font-line-height-small: 16px;
+  --font-line-height-medium: 18px;
+  --font-line-height-large: 24px;
+
+  --font-letter-spacing-small: 0;
+  --font-letter-spacing-medium: -0.0025em;
+  --font-letter-spacing-large: -0.001em;
+
+  --border-radius-small: 2px;
+  --border-radius-medium: 5px;
+  --border-radius-large: 6px;
+
+  --shadow-hud: 0 5px 17px rgba(0, 0, 0, .2), 0 2px 7px rgba(0, 0, 0, .15);
+  --shadow-floating-window: 0 2px 14px rgba(0, 0, 0, .15);
+
+  --size-xxxsmall: 4px;
+  --size-xxsmall: 8px;
+  --size-xsmall: 16px;
+  --size-small: 24px;
+  --size-medium: 32px;
+  --size-large: 40px;
+  --size-xlarge: 48px;
+  --size-xxlarge: 64px;
+  --size-huge: 80px;
+}
+
+div {
+  color: var(--figma-color-text);
+  font-family: var(--font-stack);
+  user-select: none;
+}
+
+.font-small {
+  font-size: var(--font-size-small);
+  line-height: var(--font-line-height-small);
+  letter-spacing: var(--font-letter-spacing-pos-small);
+}
+
+.font-medium {
+  font-size: var(--font-size-medium);
+  line-height: var(--font-line-height-medium);
+  letter-spacing: var(--font-letter-spacing-pos-medium);
+}
+
+.font-large {
+  font-size: var(--font-size-large);
+  line-height: var(--font-line-height-large);
+  letter-spacing: var(--font-letter-spacing-large);
+}
+
+.weight-regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.weight-bold {
+  font-weight: var(--font-weight-bold);
+}
