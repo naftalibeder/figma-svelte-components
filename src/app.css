@@ -32,31 +32,34 @@ html {
   --size-large: 40px;
   --size-xlarge: 48px;
   --size-xxlarge: 64px;
-  --size-huge: 80px;
 }
 
 div {
-  color: var(--figma-color-text);
-  font-family: var(--font-stack);
   user-select: none;
 }
 
 .font-small {
   font-size: var(--font-size-small);
   line-height: var(--font-line-height-small);
-  letter-spacing: var(--font-letter-spacing-pos-small);
+  letter-spacing: var(--font-letter-spacing-small);
+  color: var(--figma-color-text);
+  font-family: var(--font-stack);
 }
 
 .font-medium {
   font-size: var(--font-size-medium);
   line-height: var(--font-line-height-medium);
-  letter-spacing: var(--font-letter-spacing-pos-medium);
+  letter-spacing: var(--font-letter-spacing-medium);
+  color: var(--figma-color-text);
+  font-family: var(--font-stack);
 }
 
 .font-large {
   font-size: var(--font-size-large);
   line-height: var(--font-line-height-large);
   letter-spacing: var(--font-letter-spacing-large);
+  color: var(--figma-color-text);
+  font-family: var(--font-stack);
 }
 
 .weight-regular {
@@ -69,4 +72,8 @@ div {
 
 .weight-bold {
   font-weight: var(--font-weight-bold);
+}
+
+.ignore-click {
+  pointer-events: none;
 }

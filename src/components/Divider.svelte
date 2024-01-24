@@ -1,10 +1,12 @@
 <script lang="ts">
   import "../app.css";
+  import type { InternalClass } from "../types";
 
-  export let className = "";
+  let _class: InternalClass = "";
+  export { _class as class };
 </script>
 
-<div class={className}>
+<div class={_class}>
   <hr />
 </div>
 

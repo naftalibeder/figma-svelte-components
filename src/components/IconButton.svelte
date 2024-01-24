@@ -1,15 +1,17 @@
 <script lang="ts">
   import "../app.css";
   import { Icon } from "../components";
-  import type { IconKind } from "../types";
+  import type { IconKind, InternalClass } from "../types";
 
-  export let className = "";
+  let _class: InternalClass = "";
+  export { _class as class };
+
   export let kind: IconKind;
   export let onClick: () => void;
 </script>
 
 <div>
-  <button class={className} on:click={onClick}>
+  <button class={_class} on:click={onClick}>
     <Icon {kind} />
   </button>
 </div>

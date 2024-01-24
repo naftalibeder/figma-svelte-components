@@ -1,12 +1,15 @@
 <script lang="ts">
   import "../app.css";
+  import type { InternalClass } from "../types";
 
-  export let className = "";
+  let _class: InternalClass = "";
+  export { _class as class };
+
   export let size: "font-small" | "font-medium" | "font-large" = "font-small";
   export let weight: "weight-regular" | "weight-medium" | "weight-bold" =
     "weight-regular";
 </script>
 
-<div class="{className} {size} {weight}">
+<div class="{size} {weight} {_class}">
   <slot />
 </div>

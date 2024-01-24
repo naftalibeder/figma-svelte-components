@@ -1,14 +1,17 @@
 <script lang="ts">
   import "../app.css";
+  import type { InternalClass } from "../types";
 
-  export let className = "";
+  let _class: InternalClass = "";
+  export { _class as class };
+
   export let type: "text" = "text";
   export let value: string | undefined = undefined;
   export let placeholder: string | undefined = undefined;
   export let disabled: boolean = false;
 </script>
 
-<div class={className}>
+<div class={_class}>
   {#if type === "text"}
     <input
       class={"font-small"}
@@ -30,11 +33,12 @@
     display: flex;
     width: 100%;
     height: var(--size-medium);
-    padding: var(--size-xxsmall) var(--size-xxxsmall);
+    padding: 0px var(--size-xxxsmall);
     color: var(--figma-color-text);
     background-color: var(--figma-color-bg);
     border: 1px solid var(--figma-color-border);
     border-radius: var(--border-radius-small);
+    box-sizing: border-box;
     outline: none;
   }
 

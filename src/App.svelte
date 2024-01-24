@@ -10,24 +10,48 @@
     Type,
   } from "./components";
 
-  const logClick = (...args: any) => {
-    console.log("Clicked", args);
+  const logClick = (name: string, ...args: any) => {
+    console.log(`${name}:`, args);
   };
 </script>
 
 <div class="page">
   <div class="container">
-    <div>Section</div>
+    <p>Section</p>
     <Section>Hello, world.</Section>
-    <div>Type</div>
+
+    <div class="grid-divider" />
+
+    <p>Type</p>
     <Type>Hello, world.</Type>
-    <div>Icon</div>
+
+    <div class="grid-divider" />
+
+    <p>Icon</p>
     <Icon kind={"plus"} />
-    <div>IconButton</div>
-    <IconButton kind={"plus"} onClick={logClick} />
-    <div>Input</div>
-    <Input value={undefined} placeholder={"Enter text"} />
-    <div>SelectMenu</div>
+
+    <div class="grid-divider" />
+
+    <p>IconButton</p>
+    <IconButton
+      kind={"plus"}
+      onClick={() => {
+        logClick("IconButton");
+      }}
+    />
+
+    <div class="grid-divider" />
+
+    <p>Input</p>
+    <Input
+      value={undefined}
+      placeholder={"Enter text"}
+      on:input={(evt) => logClick(evt.target["value"])}
+    />
+
+    <div class="grid-divider" />
+
+    <p>SelectMenu</p>
     <SelectMenu
       items={[
         { id: "item-1", label: "Item 1" },
@@ -36,9 +60,14 @@
       ]}
       selectedItemId={"item-1"}
       placeholder={"Choose one"}
-      onChangeSelectedItem={logClick}
+      onChangeSelectedItem={(o) => {
+        logClick("SelectMenu", o);
+      }}
     />
-    <div>Divider</div>
+
+    <div class="grid-divider" />
+
+    <p>Divider</p>
     <Divider />
   </div>
 </div>
@@ -55,8 +84,19 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+    align-items: center;
     row-gap: 24px;
     width: 100%;
     max-width: 600px;
+  }
+
+  p {
+    color: rgb(154, 154, 154);
+  }
+
+  .grid-divider {
+    display: grid;
+    grid-column: 1/3;
+    border-top: 1px solid rgb(226, 226, 226);
   }
 </style>
