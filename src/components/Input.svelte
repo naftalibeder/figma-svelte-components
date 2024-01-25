@@ -33,23 +33,23 @@
     display: flex;
     width: 100%;
     height: var(--size-medium);
-    padding: 0px var(--size-xxxsmall);
+    padding: 0px var(--size-xxsmall);
     color: var(--figma-color-text);
     background-color: var(--figma-color-bg);
-    border: 1px solid var(--figma-color-border);
+    outline: 1px var(--figma-color-border) solid;
+    outline-offset: -1px;
     border-radius: var(--border-radius-small);
+    border: 0px;
     box-sizing: border-box;
-    outline: none;
   }
 
   input:hover,
   input:active {
-    border-color: var(--figma-color-text-tertiary);
+    outline-color: var(--figma-color-text-tertiary);
   }
 
   input:focus {
-    border: 1px solid var(--figma-color-border-selected);
-    outline-offset: -2px;
+    outline-color: var(--figma-color-border-selected);
   }
 
   input::selection {
@@ -59,7 +59,7 @@
 
   input::placeholder {
     color: var(--figma-color-text-tertiary);
-    border: 1px solid transparent;
+    outline: 1px transparent solid;
   }
 
   input:disabled {

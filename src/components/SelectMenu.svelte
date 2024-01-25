@@ -2,7 +2,7 @@
   import "../app.css";
   import type { InternalClass, SelectMenuItem } from "../types";
   import { Type } from ".";
-  import Icon from "./Icon.svelte";
+  import { Icon } from ".";
 
   let _class: InternalClass = "";
   export { _class as class };
@@ -29,21 +29,31 @@
 
 <button
   {id}
-  class={`container ${_class}`}
+  class={`container ${isPopupActive ? "popup-active" : ""} ${_class}`}
   on:click={() => {
     isPopupActive = !isPopupActive;
   }}
 >
   {#if isPopupActive}
-    <div class="contents-active">
+    <div class="popup">
       {#each items as item}
         <button
-          class="item"
+          class={`item ${item.subtitle ? "large" : ""}`}
           on:click={() => {
             selectedItemId = item.id;
+            onChangeSelectedItem(item.id);
           }}
         >
-          <Type class="item-label">{item.label}</Type>
+          <div>
+            <Type class="item-title" size={"font-small"}>
+              {item.title}
+            </Type>
+            {#if item.subtitle}
+              <Type class="item-subtitle" size={"font-small"}>
+                {item.subtitle}
+              </Type>
+            {/if}
+          </div>
           {#if item.id === selectedItemId}
             <Icon class="check" kind={"check"} />
           {/if}
@@ -51,11 +61,11 @@
       {/each}
     </div>
   {:else}
-    <div class="contents-inactive ignore-click">
+    <div class="default-contents ignore-click">
       {#if !selectedItemId}
         <Type class="placeholder">{placeholder}</Type>
       {:else}
-        <Type>{items.find((o) => o.id === selectedItemId)?.label ?? ""}</Type>
+        <Type>{items.find((o) => o.id === selectedItemId)?.title ?? ""}</Type>
       {/if}
       <Icon kind={"down"} />
     </div>
@@ -73,23 +83,22 @@
     height: var(--size-medium);
     color: var(--figma-color-text);
     background-color: var(--figma-color-bg);
-    border: 1px solid var(--figma-color-border);
+    outline: 1px var(--figma-color-border) solid;
+    outline-offset: -1px;
     border-radius: var(--border-radius-small);
     box-sizing: border-box;
-    outline: none;
   }
 
   .container:hover,
   .container:active {
-    border-color: var(--figma-color-text-tertiary);
+    outline-color: var(--figma-color-text-tertiary);
   }
 
-  .container:focus {
-    border: 1px solid var(--figma-color-border-selected);
-    outline-offset: -2px;
+  .container:focus:global(.popup-active) {
+    outline: 0px;
   }
 
-  .contents-inactive {
+  .default-contents {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -97,37 +106,60 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    padding-left: var(--size-xxxsmall);
+    padding-left: var(--size-xxsmall);
+    white-space: nowrap;
   }
 
   :global(.placeholder) {
     color: var(--figma-color-text-tertiary);
   }
 
-  :global(.contents-active) {
+  .popup {
     position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
     display: grid;
+    padding: 8px 0px;
+    max-height: calc(var(--size-medium) * 6.5 - 8px);
+    overflow-y: scroll;
     background-color: var(--figma-color-text);
+    z-index: 2147483647;
   }
 
-  .item {
+  :global(.popup) {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  :global(.popup::-webkit-scrollbar) {
+    display: none;
+  }
+
+  .popup > .item {
     all: unset;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     height: var(--size-medium);
     padding-left: var(--size-xxsmall);
+    white-space: nowrap;
   }
 
-  .item:hover {
+  .popup > .item.large {
+    height: var(--size-large);
+  }
+
+  .popup > .item:hover {
     background-color: var(--figma-color-bg-selected-strong);
   }
 
-  :global(.item-label) {
+  :global(.item-title) {
     color: var(--figma-color-bg);
+  }
+
+  :global(.item-subtitle) {
+    color: var(--figma-color-border);
   }
 
   :global(.check) {

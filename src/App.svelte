@@ -52,18 +52,48 @@
     <div class="grid-divider" />
 
     <p>SelectMenu</p>
-    <SelectMenu
-      items={[
-        { id: "item-1", label: "Item 1" },
-        { id: "item-2", label: "Item 2" },
-        { id: "item-3", label: "Item 3" },
-      ]}
-      selectedItemId={"item-1"}
-      placeholder={"Choose one"}
-      onChangeSelectedItem={(o) => {
-        logClick("SelectMenu", o);
-      }}
-    />
+    <div class="vstack">
+      <SelectMenu
+        items={Array(3)
+          .fill(0)
+          .map((_, j) => ({
+            id: `item-${j + 1}`,
+            title: `Item ${j + 1}`,
+          }))}
+        selectedItemId={"item-1"}
+        placeholder={"Choose one"}
+        onChangeSelectedItem={(o) => {
+          logClick("SelectMenu", o);
+        }}
+      />
+      <SelectMenu
+        items={Array(20)
+          .fill(0)
+          .map((_, j) => ({
+            id: `item-${j + 1}`,
+            title: `Item ${j + 1}`,
+          }))}
+        selectedItemId={"item-1"}
+        placeholder={"Choose one"}
+        onChangeSelectedItem={(o) => {
+          logClick("SelectMenu", o);
+        }}
+      />
+      <SelectMenu
+        items={Array(3)
+          .fill(0)
+          .map((_, j) => ({
+            id: `item-${j + 1}`,
+            title: `Item ${j + 1}`,
+            subtitle: `Subtitle`,
+          }))}
+        selectedItemId={"item-1"}
+        placeholder={"Choose one"}
+        onChangeSelectedItem={(o) => {
+          logClick("SelectMenu", o);
+        }}
+      />
+    </div>
 
     <div class="grid-divider" />
 
@@ -98,5 +128,10 @@
     display: grid;
     grid-column: 1/3;
     border-top: 1px solid rgb(226, 226, 226);
+  }
+
+  .vstack {
+    display: grid;
+    row-gap: 8px;
   }
 </style>

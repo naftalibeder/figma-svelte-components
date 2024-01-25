@@ -9,7 +9,8 @@ export type IconKind =
 
 export type SelectMenuItem<T> = {
   id: T;
-  label: string;
+  title: string;
+  subtitle?: string;
 };
 
 /**
